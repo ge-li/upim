@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' create_pseudo_obs(c(c(-1, 0, 1)))
+#' create_pseudo_obs(c(-1, 0, 1))
 create_pseudo_obs <- function(y) {
   # Note: as.vector(t(matrix)) flattens the matrix in row major fashion,
   #       R's default as.vector() will stretch a matrix in column major.
