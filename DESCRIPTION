@@ -4,7 +4,11 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Li", "Ge", , "li.ge@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: This package is a U-statistics based implementation of the 
+               Probabilistic Index Models (PIM) proposed by Thas et al. (2012). 
+               It supports weighted PIM estimation, which is not implemented 
+               in the original authors' {pim} package. It's also more efficient 
+               and light-weight. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
