@@ -50,3 +50,14 @@ test_that("pim_fit works", {
 # # a  0.11747174 0.11628470  1.0208052
 # # x1 0.05965732 0.06221224 -4.1067885
 # # x2 0.06552190 0.06599793 -0.7212743
+
+# # # ----- Test small sample convergence -----
+# set.seed(123)
+# pim_test_runs = pbapply::pbreplicate(10000, {
+#   df <- dgp_rct(n = 20, p_c = 1, error_dist = "gumbel")
+#   obj <- pim_fit(df$y, df[c("a", "x1", "x2")], link = "logit", tol = 1e-8)
+#   obj$termcd
+# }, simplify = T)
+# # |++++++++++++++++++++++++++++++++++++++++++++++++++| 100% elapsed=08s
+# mean(pim_test_runs)
+# # 1 all termcd = 1, very good!
