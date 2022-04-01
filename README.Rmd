@@ -50,3 +50,32 @@ system.time(obj <- pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "probit")
 obj$coef
 obj$vcov
 ```
+
+Here is another example of "logit" PIM, and comparing with the \{pim\} package.
+The `vcov` estimation is slightly different because \{upim\} uses U-statistics-based
+asymptotic sandwich estimator, whereas the \{pim\} package uses the "sparse correlation"
+theory based sandwich estimator. They are, however, asymptotically equivalent. 
+
+```{r example2}
+# install.packages(c("pim", "evd"))
+library(pim)
+library(evd)
+set.seed(42)
+n <- 200
+a <- 1
+b <- -2
+x1 <- rnorm(n)
+x2 <- rnorm(n)
+# Gumbel error corresponds to a logit PIM. 
+y <- a * x1 + b * x2 + rgumbel(n)
+# Apply some arbitrary monotonic transformation to y.
+mono_trans_y = pnorm(plogis(pnorm(y)))^2 + 1 
+# upim 
+system.time(upim.obj <- upim::pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "logit"))
+upim.obj$coef
+upim.obj$vcov
+# pim 
+system.time(pim.obj <- pim(y ~ x1 + x2, link = "logit"))
+pim.obj@coef
+pim.obj@vcov
+```
