@@ -19,12 +19,24 @@
     <loc>/reference/create_pseudo_obs.html</loc>
   </url>
   <url>
+    <loc>/reference/est_fun.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/jac_est_fun.html</loc>
+  </url>
+  <url>
+    <loc>/reference/jac_res_fun.html</loc>
   </url>
   <url>
     <loc>/reference/new_design_matrix.html</loc>
   </url>
   <url>
     <loc>/reference/preceq.html</loc>
+  </url>
+  <url>
+    <loc>/reference/res_fun.html</loc>
   </url>
 </urlset>

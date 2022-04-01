@@ -14,3 +14,6 @@ Suggests:
 Config/testthat/edition: 3
 URL: https://github.com/ge-li/upim
 BugReports: https://github.com/ge-li/upim/issues
+Imports: 
+    nleqslv,
+    stats

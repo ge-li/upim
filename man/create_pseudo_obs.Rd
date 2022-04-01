@@ -16,5 +16,5 @@ create_pseudo_obs(y)
 The pseudo observations is defined as \eqn{Y_{ij}^* = I(Y_i \preceq Y_j)}.
 }
 \examples{
-create_pseudo_obs(c(c(-1, 0, 1)))
+create_pseudo_obs(c(-1, 0, 1))
 }
