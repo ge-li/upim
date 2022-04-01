@@ -33,10 +33,13 @@ a <- 1
 b <- -2
 x1 <- rnorm(n)
 x2 <- rnorm(n)
+# Normal error corresponds to a probit PIM. 
 y <- a * x1 + b * x2 + rnorm(n, sd = 1 / sqrt(2))
-system.time(obj <- pim_fit(y = y, X = cbind(x1, x2), link = "probit"))
+# Apply some arbitrary monotonic transformation to y.
+mono_trans_y = pnorm(plogis(pnorm(y)))^2 + 1 
+system.time(obj <- pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "probit"))
 #>    user  system elapsed 
-#>   0.068   0.011   0.076
+#>   0.068   0.010   0.075
 obj$coef
 #>         x1         x2 
 #>  0.9365634 -1.9749170
