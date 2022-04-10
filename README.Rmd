@@ -75,7 +75,7 @@ system.time(upim.obj <- upim::pim_fit(y = mono_trans_y, X = cbind(x1, x2), link 
 upim.obj$coef
 upim.obj$vcov
 # pim 
-system.time(pim.obj <- pim(y ~ x1 + x2, link = "logit"))
+system.time(pim.obj <- pim(mono_trans_y ~ x1 + x2, link = "logit"))
 pim.obj@coef
 pim.obj@vcov
 ```

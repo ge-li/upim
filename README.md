@@ -39,7 +39,7 @@ y <- a * x1 + b * x2 + rnorm(n, sd = 1 / sqrt(2))
 mono_trans_y = pnorm(plogis(pnorm(y)))^2 + 1 
 system.time(obj <- pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "probit"))
 #>    user  system elapsed 
-#>   0.067   0.010   0.075
+#>   0.067   0.011   0.073
 obj$coef
 #>         x1         x2 
 #>  0.9365634 -1.9749170
@@ -77,7 +77,7 @@ mono_trans_y = pnorm(plogis(pnorm(y)))^2 + 1
 # upim 
 system.time(upim.obj <- upim::pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "logit"))
 #>    user  system elapsed 
-#>   0.014   0.003   0.014
+#>   0.014   0.002   0.015
 upim.obj$coef
 #>         x1         x2 
 #>  0.8868541 -1.8004009
@@ -86,9 +86,9 @@ upim.obj$vcov
 #> x1  0.008924131 -0.001844716
 #> x2 -0.001844716  0.018828231
 # pim 
-system.time(pim.obj <- pim(y ~ x1 + x2, link = "logit"))
+system.time(pim.obj <- pim(mono_trans_y ~ x1 + x2, link = "logit"))
 #>    user  system elapsed 
-#>   0.014   0.001   0.016
+#>   0.014   0.001   0.015
 pim.obj@coef
 #>         x1         x2 
 #>  0.8868582 -1.8004090
