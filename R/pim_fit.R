@@ -59,7 +59,7 @@ pim_fit <- function(y, X, link = "logit", w = NULL,
 
   # Sandwich estimator for U-statistics Z-estimator.
   meat <- sandwich_meat(y = y_new, X = X_new, b = b, link = link, w = w)
-  slv$vcov <- 4 * solve(slv$jac) %*% meat %*% solve(slv$jac) / n
+  slv$vcov <- solve(slv$jac) %*% meat %*% solve(slv$jac) / n
 
   # Touch up the returning object.
   names(slv)[1] <- "coef"
