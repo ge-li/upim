@@ -52,7 +52,7 @@ pim_fit <- function(y, X, link = "logit", w = NULL,
 
   # Find the root of the estimating equation.
   slv <- nleqslv::nleqslv(b, U, method = "Newton", jac = dU, jacobian = TRUE,
-                          control = list(xtol = tol, ftol = tol, chkjac = TRUE,
+                          control = list(xtol = tol, ftol = tol,
                                          maxit = max.iter))
 
   b <- slv$x # set b to solution
