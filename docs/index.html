@@ -103,14 +103,14 @@ problem:</p>
 <span class="va">mono_trans_y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">plogis</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span> 
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pim_fit.html">pim_fit</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mono_trans_y</span>, X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, link <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.067   0.011   0.073</span>
+<span class="co">#&gt;   0.072   0.010   0.080</span>
 <span class="va">obj</span><span class="op">$</span><span class="va">coef</span>
 <span class="co">#&gt;         x1         x2 </span>
-<span class="co">#&gt;  0.9365634 -1.9749170</span>
+<span class="co">#&gt;  0.9365686 -1.9749280</span>
 <span class="va">obj</span><span class="op">$</span><span class="va">vcov</span>
 <span class="co">#&gt;              x1           x2</span>
-<span class="co">#&gt; x1  0.008789027 -0.007021569</span>
-<span class="co">#&gt; x2 -0.007021569  0.015946303</span></code></pre></div>
+<span class="co">#&gt; x1  0.008789200 -0.007021797</span>
+<span class="co">#&gt; x2 -0.007021797  0.015946758</span></code></pre></div>
 <p>Here is another example of “logit” PIM, and comparing with the {pim}
 package. The <code>vcov</code> estimation is slightly different because
 {upim} uses U-statistics-based asymptotic sandwich estimator, whereas
@@ -138,14 +138,14 @@ estimator. They are, however, asymptotically equivalent.</p>
 <span class="co"># upim </span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">upim.obj</span> <span class="op">&lt;-</span> <span class="fu">upim</span><span class="fu">::</span><span class="fu"><a href="reference/pim_fit.html">pim_fit</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mono_trans_y</span>, X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.014   0.002   0.015</span>
+<span class="co">#&gt;   0.014   0.003   0.014</span>
 <span class="va">upim.obj</span><span class="op">$</span><span class="va">coef</span>
 <span class="co">#&gt;         x1         x2 </span>
-<span class="co">#&gt;  0.8868541 -1.8004009</span>
+<span class="co">#&gt;  0.8868582 -1.8004090</span>
 <span class="va">upim.obj</span><span class="op">$</span><span class="va">vcov</span>
 <span class="co">#&gt;              x1           x2</span>
-<span class="co">#&gt; x1  0.008924131 -0.001844716</span>
-<span class="co">#&gt; x2 -0.001844716  0.018828231</span>
+<span class="co">#&gt; x1  0.008924222 -0.001844803</span>
+<span class="co">#&gt; x2 -0.001844803  0.018828545</span>
 <span class="co"># pim </span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">pim.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pim/man/pim.html" class="external-link">pim</a></span><span class="op">(</span><span class="va">mono_trans_y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
@@ -157,6 +157,85 @@ estimator. They are, however, asymptotically equivalent.</p>
 <span class="co">#&gt;              x1          x2</span>
 <span class="co">#&gt; x1  0.008531774 -0.00165584</span>
 <span class="co">#&gt; x2 -0.001655840  0.01799113</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="other-features">Other Features<a class="anchor" aria-label="anchor" href="#other-features"></a>
+</h2>
+<div class="section level3">
+<h3 id="show-iteration-reports">Show Iteration Reports<a class="anchor" aria-label="anchor" href="#show-iteration-reports"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">upim</span><span class="fu">::</span><span class="fu"><a href="reference/pim_fit.html">pim_fit</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mono_trans_y</span>, X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, link <span class="op">=</span> <span class="st">"logit"</span>, trace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; **Showing nleqslv::nleqslv() iteration report**</span>
+<span class="co">#&gt;   Columns:</span>
+<span class="co">#&gt;   --------</span>
+<span class="co">#&gt;   Jac - Jacobian type (reciprocal condition number); N: Newton Jacobian; B: Broyden updated matrix</span>
+<span class="co">#&gt;   Lambda - Line search parameter</span>
+<span class="co">#&gt;   Fnorm - Fnorm square of the euclidean norm of function values / 2</span>
+<span class="co">#&gt;   Largest |f| - Infinity norm of f(x) at the current point</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Algorithm parameters</span>
+<span class="co">#&gt;   --------------------</span>
+<span class="co">#&gt;   Method: Newton  Global strategy: none</span>
+<span class="co">#&gt;   Maximum stepsize = 1.79769e+308</span>
+<span class="co">#&gt;   Scaling: fixed</span>
+<span class="co">#&gt;   ftol = 1.49012e-08 xtol = 1.49012e-08 btol = 0.001 cndtol = 1.49012e-08</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Iteration report</span>
+<span class="co">#&gt;   ----------------</span>
+<span class="co">#&gt;   Iter         Jac   Lambda          Fnorm   Largest |f|</span>
+<span class="co">#&gt;      0                        1.110197e-01  4.033866e-01</span>
+<span class="co">#&gt;      1  N(8.0e-01)   1.0000   7.368250e-03  1.049548e-01</span>
+<span class="co">#&gt;      2  N(5.4e-01)   1.0000   6.095238e-04  3.016787e-02</span>
+<span class="co">#&gt;      3  N(3.3e-01)   1.0000   1.771673e-05  5.144305e-03</span>
+<span class="co">#&gt;      4  N(2.5e-01)   1.0000   3.431860e-08  2.265142e-04</span>
+<span class="co">#&gt;      5  N(2.4e-01)   1.0000   1.588323e-13  4.874870e-07</span>
+<span class="co">#&gt;      6  N(2.4e-01)   1.0000   3.437348e-24  2.268370e-12</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Results:</span>
+<span class="co">#&gt;   --------</span>
+<span class="co">#&gt;   Convergence achieved: PIM estimating function value is within tolerance.</span>
+<span class="co">#&gt; $coef</span>
+<span class="co">#&gt;         x1         x2 </span>
+<span class="co">#&gt;  0.8868582 -1.8004090 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $jac</span>
+<span class="co">#&gt;            x1          x2</span>
+<span class="co">#&gt; x1 -0.1910663 -0.05952050</span>
+<span class="co">#&gt; x2 -0.0595205 -0.08956385</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $vcov</span>
+<span class="co">#&gt;              x1           x2</span>
+<span class="co">#&gt; x1  0.008924222 -0.001844803</span>
+<span class="co">#&gt; x2 -0.001844803  0.018828545</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $link</span>
+<span class="co">#&gt; [1] "logit"</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="test-global-strategies-for-newtons-method">Test Global Strategies for Newton’s Method<a class="anchor" aria-label="anchor" href="#test-global-strategies-for-newtons-method"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test_res</span> <span class="op">&lt;-</span> <span class="fu">upim</span><span class="fu">::</span><span class="fu"><a href="reference/pim_fit.html">pim_fit</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mono_trans_y</span>, X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, link <span class="op">=</span> <span class="st">"logit"</span>, test.nleqslv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt;   ----------------</span>
+<span class="co">#&gt; Test different methods for solving with `nleqlsv::testnslv()`:</span>
+<span class="co">#&gt; Message:</span>
+<span class="co">#&gt; Fcrit - Convergence of function values has been achieved.</span>
+<span class="co">#&gt; Xcrit - This means that the relative distance between two consecutive x-values is smaller than xtol.</span>
+<span class="co">#&gt; Stalled - The algorithm cannot find an acceptable new point.</span>
+<span class="co">#&gt; Maxiter - Iteration limit maxit exceeded.</span>
+<span class="co">#&gt; Illcond - Jacobian is too ill-conditioned.</span>
+<span class="co">#&gt; Singular - Jacobian is singular.</span>
+<span class="co">#&gt; BadJac - Jacobian is unusable.</span>
+<span class="co">#&gt;   Method Global termcd Fcnt Jcnt Iter Message        Fnorm  Largest |f|</span>
+<span class="co">#&gt; 1 Newton   none      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span>
+<span class="co">#&gt; 2 Newton  cline      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span>
+<span class="co">#&gt; 3 Newton  qline      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span>
+<span class="co">#&gt; 4 Newton  gline      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span>
+<span class="co">#&gt; 5 Newton pwldog      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span>
+<span class="co">#&gt; 6 Newton dbldog      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span>
+<span class="co">#&gt; 7 Newton   hook      1    6    6    6   Fcrit 3.428553e-24 2.618608e-12</span></code></pre></div>
+</div>
 </div>
 </div>
   </div>

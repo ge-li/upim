@@ -79,3 +79,18 @@ system.time(pim.obj <- pim(mono_trans_y ~ x1 + x2, link = "logit"))
 pim.obj@coef
 pim.obj@vcov
 ```
+
+
+## Other Features
+
+### Show Iteration Reports
+
+```{r}
+upim::pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "logit", trace = TRUE)
+```
+
+### Test Global Strategies for Newton's Method
+
+```{r}
+test_res <- upim::pim_fit(y = mono_trans_y, X = cbind(x1, x2), link = "logit", test.nleqslv = TRUE)
+```
