@@ -10,8 +10,11 @@ pim_fit(
   link = "logit",
   w = NULL,
   init = NULL,
-  tol = 1e-06,
-  max.iter = 200,
+  tol = sqrt(.Machine$double.eps),
+  max.iter = 100,
+  nleqslv.global = "none",
+  trace = FALSE,
+  test.nleqslv = FALSE,
   keep.data = FALSE
 )
 }
@@ -30,12 +33,18 @@ pim_fit(
 
 \item{max.iter}{numeric The maximum iteration of Newton's method.}
 
+\item{nleqslv.global}{character The global strategy for Newton's method. See ?nleqslv::nleqslv.}
+
+\item{trace}{logical Show Newton's method iteration report if TRUE.}
+
+\item{test.nleqslv}{logical Test different global strategies for Newton's method if TRUE. See ?nleqslv::testnslv.}
+
 \item{keep.data}{logical Should the returned object keep original data?}
 }
 \value{
 A list containing the estimated coefficients and their covaraince
 matrix. It also contains the diagnostics of \code{nleqlsv()} procedure.
-If \code{keep.data} is \code{TRUE}, then the inputs \code{y}, \code{X}, \code{link}, \code{w}
+If \code{keep.data} is \code{TRUE}, then the inputs \code{y}, \code{X}, \code{w}
 will also be returned.
 }
 \description{

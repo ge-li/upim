@@ -56,8 +56,11 @@
   link <span class="op">=</span> <span class="st">"logit"</span>,
   w <span class="op">=</span> <span class="cn">NULL</span>,
   init <span class="op">=</span> <span class="cn">NULL</span>,
-  tol <span class="op">=</span> <span class="fl">1e-06</span>,
-  max.iter <span class="op">=</span> <span class="fl">200</span>,
+  tol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,
+  max.iter <span class="op">=</span> <span class="fl">100</span>,
+  nleqslv.global <span class="op">=</span> <span class="st">"none"</span>,
+  trace <span class="op">=</span> <span class="cn">FALSE</span>,
+  test.nleqslv <span class="op">=</span> <span class="cn">FALSE</span>,
   keep.data <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -78,6 +81,12 @@
 <dd><p>numeric The numeric tolerance of <code>nleqslv()</code>.</p></dd>
 <dt>max.iter</dt>
 <dd><p>numeric The maximum iteration of Newton's method.</p></dd>
+<dt>nleqslv.global</dt>
+<dd><p>character The global strategy for Newton's method. See ?nleqslv::nleqslv.</p></dd>
+<dt>trace</dt>
+<dd><p>logical Show Newton's method iteration report if TRUE.</p></dd>
+<dt>test.nleqslv</dt>
+<dd><p>logical Test different global strategies for Newton's method if TRUE. See ?nleqslv::testnslv.</p></dd>
 <dt>keep.data</dt>
 <dd><p>logical Should the returned object keep original data?</p></dd>
 </dl></div>
@@ -85,7 +94,7 @@
     <h2>Value</h2>
     <p>A list containing the estimated coefficients and their covaraince
 matrix. It also contains the diagnostics of <code>nleqlsv()</code> procedure.
-If <code>keep.data</code> is <code>TRUE</code>, then the inputs <code>y</code>, <code>X</code>, <code>link</code>, <code>w</code>will also be returned.</p>
+If <code>keep.data</code> is <code>TRUE</code>, then the inputs <code>y</code>, <code>X</code>, <code>w</code>will also be returned.</p>
     </div>
 
   </div>
