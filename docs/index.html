@@ -71,11 +71,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>This package is a U-statistics based implementation of the
-Probabilistic Index Models (PIM) proposed by Thas et al. (2012). It
-supports weighted PIM estimation, which is not implemented in the
-original authors’ {pim} package. It’s also more efficient and
-light-weight.</p>
+<p>This package is a U-statistics based implementation of the Probabilistic Index Models (PIM) proposed by Thas et al. (2012). It supports weighted PIM estimation, which is not implemented in the original authors’ {pim} package. It’s also more efficient and light-weight.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -87,8 +83,7 @@ light-weight.</p>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common
-problem:</p>
+<p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ge-li/upim" class="external-link">upim</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
@@ -103,7 +98,7 @@ problem:</p>
 <span class="va">mono_trans_y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">plogis</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span> 
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pim_fit.html">pim_fit</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mono_trans_y</span>, X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, link <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.072   0.010   0.080</span>
+<span class="co">#&gt;   0.070   0.009   0.078</span>
 <span class="va">obj</span><span class="op">$</span><span class="va">coef</span>
 <span class="co">#&gt;         x1         x2 </span>
 <span class="co">#&gt;  0.9365686 -1.9749280</span>
@@ -111,11 +106,7 @@ problem:</p>
 <span class="co">#&gt;              x1           x2</span>
 <span class="co">#&gt; x1  0.008789200 -0.007021797</span>
 <span class="co">#&gt; x2 -0.007021797  0.015946758</span></code></pre></div>
-<p>Here is another example of “logit” PIM, and comparing with the {pim}
-package. The <code>vcov</code> estimation is slightly different because
-{upim} uses U-statistics-based asymptotic sandwich estimator, whereas
-the {pim} package uses the “sparse correlation” theory based sandwich
-estimator. They are, however, asymptotically equivalent.</p>
+<p>Here is another example of “logit” PIM, and comparing with the {pim} package. The <code>vcov</code> estimation is slightly different because {upim} uses U-statistics-based asymptotic sandwich estimator, whereas the {pim} package uses the “sparse correlation” theory based sandwich estimator. They are, however, asymptotically equivalent.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages(c("pim", "evd"))</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CenterForStatistics-UGent/pim" class="external-link">pim</a></span><span class="op">)</span>
@@ -138,7 +129,7 @@ estimator. They are, however, asymptotically equivalent.</p>
 <span class="co"># upim </span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">upim.obj</span> <span class="op">&lt;-</span> <span class="fu">upim</span><span class="fu">::</span><span class="fu"><a href="reference/pim_fit.html">pim_fit</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mono_trans_y</span>, X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span>, link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.014   0.003   0.014</span>
+<span class="co">#&gt;   0.014   0.002   0.014</span>
 <span class="va">upim.obj</span><span class="op">$</span><span class="va">coef</span>
 <span class="co">#&gt;         x1         x2 </span>
 <span class="co">#&gt;  0.8868582 -1.8004090</span>
@@ -149,7 +140,7 @@ estimator. They are, however, asymptotically equivalent.</p>
 <span class="co"># pim </span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">pim.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pim/man/pim.html" class="external-link">pim</a></span><span class="op">(</span><span class="va">mono_trans_y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.014   0.001   0.015</span>
+<span class="co">#&gt;   0.013   0.001   0.014</span>
 <span class="va">pim.obj</span><span class="op">@</span><span class="va">coef</span>
 <span class="co">#&gt;         x1         x2 </span>
 <span class="co">#&gt;  0.8868582 -1.8004090</span>
@@ -285,8 +276,7 @@ estimator. They are, however, asymptotically equivalent.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
